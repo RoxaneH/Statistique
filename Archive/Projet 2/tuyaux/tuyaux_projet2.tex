@@ -1,0 +1,358 @@
+ \documentclass[11pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{listings}
+
+\usepackage{xcolor}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{float}
+
+
+\begin{document}
+
+\lstset{language=Matlab}
+
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\begin{titlepage}
+
+\begin{center}
+
+Eric \textsc{Vandermolen} \\[0.3cm]
+
+3ème année en ingénieur civil\\[5.5cm]
+
+{ \Huge \bfseries Eléments de statistique}\\[0.5cm]
+
+{ \huge \bfseries Partie \no2 du projet personnel}\\[4.5cm]
+
+\includegraphics[width=0.3\textwidth]{logo_ulg}
+
+\vfill
+
+{\large \today}
+
+\end{center}
+
+\end{titlepage}
+
+\subsection*{Estimation}
+
+\begin{enumerate}[(a)]
+
+\item Nous savons par définition que le biais et la variance de l'estimateur $m_x$ sont donnés par:
+
+\[ V(m_x) = E\left[(m_x - E(m_x))^2\right] \]
+
+et
+
+\[ B(m_x) = |E(m_x) - \mu| \]
+
+avec $m_x$: la moyenne de l'échantillon et $\mu$: la moyenne de la population.
+
+En faisant tourner le code, nous trouvons que $V(m_x) = 0.5260$ et que $B(m_x) = 0.0767$.
+
+\item On sait par définition que le biais et la variance de l'estimateur $median_x$ sont donnés par:
+
+\[ V(median_x) = E\left[(median_x - E(median_x))^2\right] \]
+
+\[ B(median_x) = |E(median_x) - \mu| \]
+
+avec $median_x$: la médiane de l'échantillon.
+
+En faisant tourner le code, nous trouvons que $V(median_x) = 0.6446$ et que $B(median_x) = 0.1017$.
+
+\item En augmentant le nombre de nos échantillons, nous obtenons pour la moyenne: $V(m_x) = 0.1698$ et que $B(m_x) = 0.0230$. Concernant la médiane, on a que $V(median_x) = 0.1935$ et que $B(median_x) = 0.0492$.
+
+Maintenant analysons les résultats obtenus: à nombre d'échantillons identiques, nous remarquons que la variance pour chacun des estimateurs sont assez proches l'une de l'autre contrairement au biais qui est moins important pour la moyenne $m_x$ pour chacun des 2 tailles d'échantillons. D'après la théorie nous savons que la moyenne $m_x$ est un meilleur estimateur que la médiane $median_x$. En recommançant plusieurs fois les calculs, nous remarquons que le biais pour la médiane est parfois moins élevée que celle de la moyenne. Les valeurs étant soumis à l'aléatoire, ceci est logique mais au fur et à mesure qu'on augmente la taille de l'échantillon, les valeurs obtenues tendent vers celles décrites par la théorie. Et $m_x$ tendrait vers la moyenne de la population contrairement à $median_x$ qui garderait un certain biais.
+
+\item 
+
+L'intervalle de confiance étant à 95\%, nous avons donc que $\alpha=0.05$.
+
+\begin{enumerate}[(i)]
+
+\item En utilisant la loi de Student: 
+
+nous construisons une loi de Student à $n-1=19$ ddls, l'intervalle de confiance est:
+
+\[ IC_{Student_{0.95}}(\mu) = \left[m_x - t_{1-\alpha/2}\frac{s_{19}}{\sqrt{20}}, m_x + t_{1-\alpha/2}\frac{s_{19}}{\sqrt{20}}\right] \]
+
+\item En utilisant la loi de Gauss: 
+
+nous avons comme intervalle:
+
+\[ IC_{Gauss_{0.95}}(\mu) = \left[m_x - u_{\alpha/2}\frac{s_{19}}{\sqrt{20}}, m_x + u_{\alpha/2}\frac{s_{19}}{\sqrt{20}}\right] \]
+
+\end{enumerate}
+
+Les valeurs de $t_{1-\alpha/2}$ et de $u_{\alpha/2}$ étant disponible dans des tables, en faisant tourner le code, on tourne autour de 96 pour Student et 94 pour Gauss, les 2 valeurs étant proches de $\alpha$. La loi de student convergent vers la loi de Gauss pour $n > 30$, les valeurs obtenues sont donc assez proches l'une de l'autre.
+
+Afin de vérifier s'il était raisonable de supposer la variable parente Gausienne, il suffit de vérifier si 68\% des résultats finaux des étudiants appartiennent à l'intervalle: $ \left[ \mu - \sqrt{\sigma} , \mu + \sqrt{\sigma} \right] $,
+
+$\mu $ et $\sqrt{\sigma}$ étant respectivement la moyenne et l'écart-type des résultats finaux des étudiants. En vérifiant dans matlab combien de résultats appartiennent dans l'intervalle, on trouve que 68.92\% des résultats se trouvent dans l'intervalle, il était donc résonable de supposer la variable parente Gausienne.
+
+
+
+\end{enumerate}
+
+\subsection*{Tests d'hypothèse}
+
+On a les hypothèses suivantes:
+
+\begin{itemize}
+
+\item $H_0$: un quart des étudiants ont obtenu une note inférieur à 10 et l'hypothèse alternative,
+
+\item $H_1$: plus d'un quart des étudiants ont obtenu une note inférieur à 10.
+
+\end{itemize}
+
+Nous supposons que
+
+\[ f \sim \mathcal{N}\left(p,\left(\sqrt{\frac{p(1-p)}{n}}\right)^2\right) = 1 - \alpha\]
+\[\Leftrightarrow f \sim \mathcal{N}\left(0.25,\left(\sqrt{\frac{0.25\times0.75}{20}}\right)^2\right) = 0.95\]
+
+p étant la proportion d'étudiant ayant obtenu une note inférieur à 10 et f l'estimateur de la côte des étudiants
+
+Pour déterminer un intevalle $I_{H_0}$ qui ne contient que les valeurs de f favorable à $H_0$, il faut déterminer $\epsilon$ tel que 
+
+\[ P\left(f \leq p + \epsilon\right) = 1 - \alpha \]
+
+\[ \Leftrightarrow P\left(f \leq 0.25 + \epsilon\right) = 0.95 \]
+
+En exprimant la loi de Gauss sous la forme centrée réduite, nous obtenons
+\[P\left( \mathcal{Z} \leq \frac{\epsilon}{\sigma}\right) = 0.95\]
+
+ En regardant dans les tables, on voit que 0.95 correspond approximativement à la valeur 1.65. Et donc que $\epsilon = 0.1598$.
+ 
+ Et donc que 
+ 
+  \[I_{H_0} = \ ]-\infty, 0.4098] \]
+ 
+ 
+
+\begin{enumerate}[(a)]
+
+\item En faisant le test d'hypothèse, nous voyons que dans 4 cas sur 100, l'Ulg rejet l'hypothèse $H_1$. Et en tournant le code plusieurs fois, nous voyons que celle-ci a tendance à être proche au seuil de signification $\alpha$ mais très souvent légèrement inférieur à celui-ci.
+
+\item En faisant le test d'hypothèse, nous voyons que dans 21 cas sur 100, un article de la gazette sera publié. La valeur obtenue est plus importante que celle obtenue au point précédent. Celle-ci est logique car un article est publié si au moins un institut de sondage externe critique le cours de probabilité, étant donné qu'ils sont 6, il y a donc 6 fois plus de chance en théorie que l'hypothèse soit rejeté par les instituts de sondage. Pour ce test d'hypothèse-ci, nous obtenons que les instituts de sondage externe ont 5.25 fois plus de chance de publié un article que l'Ulg. 
+
+\item Plusieurs moyens peuvent être mis en œuvre afin de réduire l'avantage des différentes instituts de sondage externe:
+
+\begin{itemize}
+
+\item Nous pouvons par exemple diminuer le seuil de signification $\alpha$ pour les instituts de sondage. Dans ce cas, il y aura donc moins de chance que l'hypothèse $H_0$ soit rejeté et après d'ajuster la valeur de $\alpha$ tel que les probabilités soient égales.
+
+\item Nous pouvons également augmenter la taille des échantillons pour les instituts de sondage afin qu'ils aient moins de chance de rejetter l'hypothèse $H_0$ et après d'ajuster la taille de l'échantillon tel que les probabilités soient égales.
+
+\item En utilisant des conditions plus strictes concernant la publication d'un article, c'est-à-dire qu'un article est publié si et seulement un certain nombre des 6 instituts de sondage externe ont rejeté simultanément l'hypothèse $H_0$.
+
+\item En fusionnant les 6 instituts de sondage en une seule entité.
+
+\end{itemize}
+
+\end{enumerate}
+
+\chapter*{Code matlab}
+
+\begin{lstlisting}
+
+function statProjet2
+
+%% Question 1: Estimation
+
+% generation de 100 echantillons iid de taille 20:
+
+map = xlsread('Proba1ereSess20122013.xls'); 
+map = int8(map);
+
+meanStudent = mean(map,2);
+meanMeanStudent = mean(meanStudent)
+
+varIid20 = zeros(100,1);
+iid20MeanStudent = zeros(100,20);
+for a=1:100,
+    iid20MeanStudent(a,:) = datasample(meanStudent,20);
+    varIid20(a,1) = var(iid20MeanStudent(a,:));
+end
+
+% (a) moyenne: biais et variance:
+
+meanIid20 = zeros(100,1);
+for a=1:100,
+    meanIid20(a,1) = mean(iid20MeanStudent(a,:));
+end
+
+meanMeanIid20 = mean(meanIid20);
+varMeanIid20 = var(meanIid20)
+biaisMeanIid20 = meanMeanIid20 - meanMeanStudent
+
+% (b) mediane: biais et variance:
+
+medianIid20 = zeros(100,1);
+for a=1:100,
+    medianIid20(a,1) = median(iid20MeanStudent(a,:));
+end
+
+meanMedianIid20 = mean(medianIid20);
+varMedianIid20 = var(medianIid20)
+biaisMedianIid20 = meanMediantIid20 - meanMeanStudent
+
+% (c) meme chose mais avec echantillons iid de taille 50:
+
+iid50MeanStudent = zeros(100,50);
+for a=1:100,
+    iid50MeanStudent(a,:) = datasample(meanStudent,50);
+end
+
+meanIid50 = zeros(100,1);
+for a=1:100,
+    meanIid50(a,1) = mean(iid50MeanStudent(a,:));
+end
+
+meanMeanIid50 = mean(meanIid50);
+varMeanIid50 = var(meanIid50)
+biaisMeanIid50 = meanMeanIid50 - meanMeanStudent
+
+medianIid50 = zeros(100,1);
+for a=1:100,
+    medianIid50(a,1) = median(iid50MeanStudent(a,:));
+end
+
+meanMedianIid50 = mean(medianIid50);
+varMedianIid50 = var(medianIid50)
+biaisMedianIid50 = meanMedianIid50 - meanMeanStudent
+
+% (d) intervalle de confiance a 95%
+
+s_19 = zeros(100,1);
+for a=1:100,
+    s_19(a,1) = sum((meanIid20(a,1)-meanMeanStudent).^2*sqrt(20/19));
+end
+s_19
+% i. loi de student a 19 ddl:
+
+borneInfS = zeros(100,1);
+borneSupS = zeros(100,1);
+intervalleStudentOk = 0;
+for a=1:100,
+    borneInfS(a,1) = meanIid20(a,1) - 2.093.*s_19(a,1)/sqrt(20);
+    borneSupS(a,1) = meanIid20(a,1) + 2.093.*s_19(a,1)/sqrt(20);
+    if (borneInfS(a,1) < meanMeanStudent && meanMeanStudent < borneSupS(a,1)),
+        intervalleStudentOk = intervalleStudentOk + 1;
+    end
+end
+
+intervalleStudentOk
+
+
+% ii. loi de Gauss:
+
+borneInfG = zeros(100,1);
+borneSupG = zeros(100,1);
+intervalleGaussOk = 0;
+for a=1:100,
+    borneInfG(a,1) = meanIid20(a,1) - 1.96.*s_19(a,1)/sqrt(20);
+    borneSupG(a,1) = meanIid20(a,1) + 1.96.*s_19(a,1)/sqrt(20);
+    if (borneInfG(a,1) < meanMeanStudent && meanMeanStudent < borneSupG(a,1)),
+        intervalleGaussOk = intervalleGaussOk + 1;
+    end
+end
+
+intervalleGaussOk
+
+% hypothese parente Gauss correct?:
+
+
+normalOK = 0;
+[a ~] = size(meanStudent);
+for i=1:a,
+    if mean(meanStudent)-std(meanStudent) < meanStudent(i) && mean(meanStudent)+std(meanStudent) > meanStudent(i),
+        normalOK = normalOK + 1;
+    end
+end
+
+normalOK = normalOK/a
+
+%% Question 2: Tests d'hypothese:
+
+% generation de 7 echantillons iid de taille 20 (100x):
+
+echInstituts = zeros(100,7,20);
+for a=1:100,
+    for b =1:7,
+        echInstituts(a,b,:) = datasample(meanStudent,20);
+    end
+end
+
+epsillon = 1.65*sqrt(0.25*0.75/20);
+borneSup = epsillon + 0.25
+
+% (a) rejet de l'hypothese par l'Ulg:
+
+meanUlg(100,1) = 0;
+rejetUlg = 0;
+for a = 1:100,
+    for b = 1:20,
+        if (echInstituts(a,1,b) < 10),
+            meanUlg(a,1) = meanUlg(a,1) + 1;
+        end
+    end
+    meanUlg(a,1) = meanUlg(a,1)./20;
+    if (meanUlg(a,1) > borneSup)
+        rejetUlg = rejetUlg + 1;
+    end
+end
+
+rejetUlg
+
+% (b) rejet de l'hypothese par un institut de sondage externe:
+
+meanInstitut(100,6) = 0;
+publication = zeros(100,1);
+for a=1:100,
+    for b=1:6,
+        for c=1:20,
+            if (echInstituts(a,b+1,c) < 10),
+                meanInstitut(a,b) = meanInstitut(a,b) + 1;
+            end
+        end
+        meanInstitut(a,b) = meanInstitut(a,b)./20;
+        if (meanInstitut(a,b) > borneSup),
+            publication(a,1) = 1;
+        end
+    end
+end
+
+publication = mean(publication)*100
+probaAvantage = publication/rejetUlg
+
+\end{lstlisting}
+
+
+\end{document}

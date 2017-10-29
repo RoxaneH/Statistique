@@ -1,0 +1,101 @@
+country,beer_servings,spirit_servings,wine_servings,total_litres_of_pure_alcohol
+Belgium,295,84,212,10.5
+Tonga,36,21,5,1.1
+Malta,149,100,120,6.6
+Guatemala,53,69,2,2.2
+USA,249,158,84,8.7
+Laos,62,0,123,6.2
+Nepal,5,6,0,0.2
+Argentina,193,25,221,8.3
+Samoa,105,18,24,2.6
+Timor-Leste,1,1,4,0.1
+Niue,188,200,7,7
+Nicaragua,78,118,1,3.5
+Liberia,19,152,2,3.1
+Montenegro,31,114,128,4.9
+Bahrain,42,63,7,2
+Vietnam,111,2,1,2
+Australia,261,72,212,10.4
+Hungary,234,215,185,11.3
+Italy,85,42,237,6.5
+Slovakia,196,293,116,11.4
+Georgia,52,100,149,5.4
+Turkey,51,22,7,1.4
+Denmark,224,81,278,10.4
+Jordan,6,21,1,0.5
+Burundi,88,0,0,6.3
+Equatorial Guinea,92,0,233,5.8
+France,127,151,370,11.8
+Djibouti,15,44,3,1.1
+Tunisia,51,3,20,1.3
+Turkmenistan,19,71,32,2.2
+Mali,5,1,1,0.6
+Bahamas,122,176,51,6.3
+Greece,133,112,218,8.3
+Ecuador,162,74,3,4.2
+St. Vincent & the Grenadines,120,221,11,6.3
+Uganda,45,9,0,8.3
+Bosnia-Herzegovina,76,173,8,4.6
+Norway,169,71,129,6.7
+Thailand,99,258,1,6.4
+Madagascar,26,15,4,0.8
+Kuwait,0,0,0,0
+Pakistan,0,0,0,0
+Canada,240,122,100,8.2
+Dominica,52,286,26,6.6
+Mauritania,0,0,0,0
+Oman,22,16,1,0.7
+Austria,279,75,191,9.7
+Malaysia,13,4,0,0.3
+San Marino,0,0,0,0
+Maldives,0,0,0,0
+Algeria,25,0,14,0.7
+Ukraine,206,237,45,8.9
+Yemen,6,0,0,0.1
+Barbados,143,173,36,6.3
+Guinea,9,0,2,0.2
+Guyana,93,302,1,7.1
+Kazakhstan,124,246,12,6.8
+Moldova,109,226,18,6.3
+Spain,284,157,112,10
+Bulgaria,231,252,94,10.3
+Malawi,8,11,1,1.5
+Cambodia,57,65,1,2.2
+Honduras,69,98,2,3
+Burkina Faso,25,7,7,4.3
+China,79,192,8,5
+Somalia,0,0,0,0
+Jamaica,82,97,9,3.4
+Belarus,142,373,42,14.4
+Albania,89,132,54,4.9
+Colombia,159,76,3,4.2
+Sudan,8,13,0,1.7
+Nigeria,42,5,2,9.1
+Lesotho,82,29,0,2.8
+Lebanon,20,55,31,1.9
+Bhutan,23,0,0,0.4
+Libya,0,0,0,0
+Namibia,376,3,1,6.8
+Latvia,281,216,62,10.5
+Serbia,283,131,127,9.6
+Slovenia,270,51,276,10.6
+Uruguay,115,35,220,6.6
+Russian Federation,247,326,73,11.5
+Marshall Islands,0,0,0,0
+Congo,76,1,9,1.7
+Senegal,9,1,7,0.3
+Togo,36,2,19,1.3
+South Africa,225,76,81,8.2
+Swaziland,90,2,2,4.7
+Armenia,21,179,11,3.8
+Cabo Verde,144,56,16,4
+Germany,346,117,175,11.3
+United Kingdom,219,126,195,10.4
+Solomon Islands,56,11,1,1.2
+Gabon,347,98,59,8.9
+Israel,63,69,9,2.5
+Syria,5,35,16,1
+Mexico,238,68,5,5.5
+Guinea-Bissau,28,31,21,2.5
+Ghana,31,3,10,1.8
+Bangladesh,0,0,0,0

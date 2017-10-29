@@ -1,0 +1,191 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+
+\title{Projet Statistique 2 \\ Mehdi Sauvage}
+
+
+
+
+
+
+\begin{document}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+
+\maketitle
+\newpage
+
+\section{Estimation}
+
+ 
+
+\subsection*{(a)}
+Pour chaque échantillons idd, le calcul de la variance et su biais pour la moyenne des échantillons a été exécuté comme définit ci-dessous.\\ \\
+Définition de la variance : 
+\[ V(m_x) = E\left[(m_x - E(m_x))^2\right] \]
+
+\ \\
+Définition du biais:
+\[ B(m_x) = |E(m_x) - \mu| \]\\
+
+Dans le cas des 100 échantillons de 20 étudiants, la variance vaut 0.340 et le biais est égal à 0.16.
+
+\subsection*{(b)}
+
+ \ \\
+Définition de la variance : 
+\[ V(med_x) = E\left[(med_x - E(med_x))^2\right] \]
+
+\ \\
+Définition du biais:
+\[ B(med_x) = |E(med_x) - \mu| \]\\
+Dans le cas des 100 échantillons de 20 étudiants, la variance vaut 0.499 et le biais est égal à 0.276.
+
+\subsection*{(c)}
+
+Considèreront le cas ou les échantillons sont de tailles 50. Il en suit une variation de la variance et du biais. en effet,\\
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+X & échantillons 20 & échantillons 50 \\
+\hline
+\hline
+$V(m_x)$ & 0.16 & 0.1141 \\ 
+\hline
+$B(m_x)$ & 0.1666 & 0.0049 \\
+\hline
+$V(med_x)$ & 0.4899 & 0.2177 \\
+\hline
+$B(med_x)$ & 0.3809 & 0.2742\\
+\hline
+
+\end{tabular}
+\end{center}
+
+\ \\
+
+Nous pouvons constater que l'augmentation de la taille des échantillons fait diminuer toutes les valeurs de biais et de variance. Intuitivement, cela a du sens d'imaginer que en augmentant l'information contenue dans chaque échantillons, nous nous rapprochons des valeurs réelles de la population.\\
+
+Notons, que le biais des moyennes tendra vers la moyenne de la population alors que le biais de la médiane ne tendra pas indéfiniment vers la médiane de la population. \\
+
+
+\subsection*{(d)}
+
+
+
+\subsubsection*{d.i - Loi de Student}
+L'intervalle de confiance se calcule comme suit : 
+\begin{center}
+
+\[  m_x - t_{1-\alpha/2}\frac{s_{n-1}}{\sqrt{n}} < x < m_x + t_{1-\alpha/2}\frac{s_{n-1}}{\sqrt{n}} \]
+\end{center}
+Notons que la valeur de $t_{1 - \alpha / 2} $ se trouve dans les tables. 
+
+
+\subsubsection*{d.ii - Loi de Gauss}
+L'intervalle de confiance se calcule comme suit : 
+\begin{center}
+\[ m_x - u_{\alpha/2}\frac{\sigma}{\sqrt{n}}  < x < m_x + u_{\alpha/2}\frac{\sigma}{\sqrt{n}} \]
+\end{center}\\
+Notons que la valeur de $\mu_{\alpha / 2}$ se trouve dans les tables.
+
+\subsubsection*{d. - Explications}
+Le nombre de dégrées de liberté dans les deux cas est $n - 1$ soit $19$. De plus, nous remarquons que les résultat donnée par la loi Student et la loi de Gauss sont fort similaire.\\
+
+En effet, la théorie dit que pour  des échantillons suffisamment grand, les intervalles se confond de plus en plus $( n > 30 )$. Le cas ou $n = 20$ n'étant pas très éloigné, la similitude entre les résultat semble cohérent.\\
+
+La moyenne de la population a été comprise 96 fois sur 100 dans les intervalles généré. Nous remarquons que cette valeur est proche de $1-\alpha$.\\
+
+%Pour savoir si il est raisonnable de considéré la variable des moyennes de la population comme gaussienne il faut vérifier que 68  $\%$ des moyennes appartienne a l'intervalle:
+
+
+%\begin{center}
+
+%$ \left[ \mu - \sigma , \mu + \sigma \right] $
+%\end{center}
+
+
+
+\section{Test d'hypothèse}
+Soit les deux hypothèse $H_0$ et $H_1$ définit comme suit:
+
+\begin{itemize}
+
+\item $H_0$: "un quart des étudiants ont obtenu une note inférieur à 10 et l'hypothèse alternative"
+
+\item $H_1$: "plus d'un quart des étudiants ont obtenu une note inférieur à 10"
+
+\end{itemize}
+
+Nous supposons que f ,un estimateur des résultats des étudiants, est une variable qui suit une lois normal.
+
+\[ f \sim \mathcal{N}\left(p,\left(\sqrt{\frac{p(1-p)}{n}}\right)^2\right) = 1 - \alpha\]
+
+ou p étant la proportion d'étudiant avec une moyenne < 10.
+
+il faut déterminer $\epsilon$ tel que  l'intervalle pour $H_0$  ait des valeurs de f favorable.
+
+\[ P\left(f \leq p + \epsilon\right) = 1 - \alpha \]
+
+\[ \Leftrightarrow P\left(f \leq 0.25 + \epsilon\right) = 0.95 \]
+
+En exprimant la loi de Gauss sous la forme centrée réduite, nous obtenons
+\[P\left( \mathcal{Z} \leq \frac{\epsilon}{\sigma}\right) = 0.95\]
+
+ Pour trouver $\epsilon = 0.1598$ nous devons chercher dans la table de gauss.
+ 
+\subsection*{(a)}
+
+L'ULg rejet l'hypothèse que au moins un quart des étudiants ait obtenu une note final < 10/20 dans 4 cas. Notez que le nombre de cas de rejet s'approche de la valeur de $\alpha$.
+
+\subsection*{(b)}
+
+Les instituts de sondage rejet l'hypothèse que au moins un quart des étudiant ai obtenu une note final < 10/20 dans 19 cas. Notez que le nombre de cas ou l'hypothèse est rejeter est plus importante de dans pour les autorités de l'ULg.Ceci est du au faite que les instituts de sondage sont plus nombreux et on donc plus de chances de se trouver face a un échantillons à rejeter. 
+
+\subsection*{(c)}
+
+Pour minimiser l'influence du problème énoncé au point (c) nous pouvons donner le même échantillons a tout les instituts de sondage. Nous pourrions aussi alléger les conditions de rejet pour les instituts de sondage  en diminuant $\alpha$. Notons aussi qu'en augmentant le nombre d'étudiant par échantillons, les instituts de sondage (tout comme les autorité de l'ULg ) serait aussi moins souvent confronté au rejet de l'hypothèse $H_0$  
+
+\newpage
+
+\section*{Code}
+
+\lstinputlisting{Q1a.m} 
+\newpage
+\lstinputlisting{Q1b.m}
+\newpage
+\lstinputlisting{Q1d.m}
+\ \\ \\
+\lstinputlisting{Q2a.m}
+\newpage
+\lstinputlisting{Q2b.m}
+\newpage
+\end{document}
