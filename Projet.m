@@ -39,7 +39,7 @@ liters = data(:,4);
 ech = echantillons(data);
 
 
-[moy_ech_beer, med_ech_beer, ET_ech_beer] = Q2ai(ech);
+[moy_ech_beer, med_ech_beer, ET_ech_beer, moy_ech_spirit, med_ech_spirit, ET_ech_spirit] = Q2ai(ech);
 
 Q2aii(ech);
 
