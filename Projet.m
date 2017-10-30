@@ -37,13 +37,30 @@ liters = data(:,4);
 %% STATISTIQUE -- PARTIE 2
 
 ech = echantillons(data);
+%ech100 = echantillons_100(data);
 
 
 [moy_ech_beer, med_ech_beer, ET_ech_beer, moy_ech_spirit, med_ech_spirit, ET_ech_spirit] = Q2ai(ech);
 
-Q2aii(ech);
+%Q2aii(ech);
 
-Q2aiii(ech)
+%Q2aiii(ech);
 
+%[moy100_beer, moy100_spirit] = Q2bi(ech100);
 
+%moyenne100_beer = mean(moy100_beer);
+%moyenne100_spirit = mean(moy100_spirit);
+
+%[med100_beer, med100_spirit] = Q2bii(ech100);
+
+%moyenne100_beer_bis = mean(med100_beer);
+%moyenne100_spirit_bis = mean(med100_spirit);
+
+%[ET100_beer, ET100_spirit] = Q2biii(ech100);
+
+%moyET100 = mean(ET100_beer);
+%moyET100 = mean(ET100_spirit);
+
+%[distKS100_beer, distKS100_spirit] = Q2biv(ech100, beers, spirit);
+%[distKS100_wine, distKS100_liters] = Q2biv(ech100, wine, liters);
 
