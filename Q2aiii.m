@@ -14,13 +14,13 @@ function [prop_200_belge] = Q2aiii(ech)
     figure('name', '1e - Polygone des frequences');
     cumsum_freq_ech_beer = cumsum (freq_ech_beer /nbr_pays );
     plot( 1:len_beer , cumsum_freq_ech_beer );
-    title('Polygone des fréquences cumulées')
+    title('Polygone des fréquences cumulées - bière')
 
     %Affichage du polygone des fréquences
     figure('name', '1e - Polygone des frequences');
     cumsum_freq_ech_spirit = cumsum (freq_ech_spirit /nbr_pays );
     plot( 1:len_spirit , cumsum_freq_ech_spirit );
-    title('Polygone des fréquences cumulées')
+    title('Polygone des fréquences cumulées - alcool fort')
 
     
 end
