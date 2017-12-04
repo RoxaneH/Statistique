@@ -1,0 +1,44 @@
+function [] = Q4a(points)
+
+data = csvread('data.csv' , 1,1 );
+
+beers = data(:,1);
+%ech100 = zeros(100,20,9);
+nbr_elem = size(beers,1)
+ech = zeros(100,6,50);
+
+for i = 1 : 100
+  
+    for j = 1 : 6
+        for k = 1 : 50
+           ech(i,j,k) = beers(mod(round(rand() * nbr_elem) , 100) +1);
+        end
+    end
+end
+
+%initialisation de la borne supérieur
+eps = 0.1598;
+sup = eps + 0.25;
+
+ulg_mean = zeros(100,1);
+ulg_rejet = 0;
+
+for i = 1 : 100
+    for j = 1 : 20
+        %verif condition d'hypothese ( < 10 )
+        if(ech(i,1,j) < 10)
+            ulg_mean(i) = ulg_mean(i) + 1;
+        end
+    end
+    
+    %calcul de la proportion de cas <10
+    ulg_mean(i) = ulg_mean(i)/20;
+    
+    %calcul de la proportion de cas rejeté
+    if (ulg_mean(i) > sup)
+        ulg_rejet = ulg_rejet + 1;
+    end
+end
+
+
+end
