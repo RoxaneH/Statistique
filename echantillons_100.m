@@ -1,16 +1,11 @@
-function [ech100] = echantillons_100(points)
+function [ech100] = echantillons_100(data)
 
-ech100 = zeros(100,20,9);
+n_features = size(data, 2);
+ech100 = zeros(20, n_features, 100);
 
 for i = 1 : 100
-    ech = echantillons();
-   for j = 1 : 20
-       for k = 1 : 9
-       
-           ech100(i,j,k) = ech(j , k); 
-     
-       end
-   end
+    ech100(:, :, i) = echantillons(data);
+   
 end
 
 
