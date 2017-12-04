@@ -1,4 +1,4 @@
-function [coefCorr_proj2_Qproj] = Q1f(beers, spirit, wine,liters)
+function [beers_alcool,spirit_litres,wine_liters] = Q1f(beers, spirit, wine,liters)
 
     
     %Affichage des graphique 
@@ -21,7 +21,9 @@ function [coefCorr_proj2_Qproj] = Q1f(beers, spirit, wine,liters)
     ylabel('Alcool')
     
     %Calcul du coef de correlation
-   % mat_coefCorr_proj2_Qproj = corrcoef(pts_proj2 , pts_QProj);
-    %coefCorr_proj2_Qproj = mat_coefCorr_proj2_Qproj(2,1);
+    beers_alcool = corrcoef(beers , spirit);
+    spirit_litres = corrcoef(spirit , liters);
+    wine_liters = corrcoef(wine , liters);
+%     coefCorr_proj2_Qproj = mat_coefCorr_proj2_Qproj(2,1);
 
 end
